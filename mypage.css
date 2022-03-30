@@ -6,3 +6,10 @@ body {
     
     border: 3px solid black;
     }
+
+    .space {
+        text-align: center;
+        padding: 2px;
+        margin: 2px;
+        display: inline-block;
+    }
