@@ -14,13 +14,9 @@ $(
         //const BOARD = $('#board');
         var myTurn = true;
 
-
-
-
         function positionBoxes() {
 
             for (var x = 0; x < 3; x++) {
-
                 for (var y = 0; y < 3; y++) {
                     var space = spaces[y][x]
                     if (space) {
@@ -50,6 +46,7 @@ $(
                 .height(spaceHeight - extraOutline)
                 .css("fontSize", (0.8 * fontSize) + "px")
                 .css("borderRadius", 5 + "px")
+                
 
             $("#board").css(
                 {
@@ -88,32 +85,37 @@ $(
 
         function whoseTurn() {
             var player;
-            var turnDisplay = $('<div id="whoseTurn">' + player + ", it is your turn" + '</div>');
-
             if (myTurn) {
                 player = "Player 1";
             }
             else {
                 player = "Player 2"
             }
-
+            var turnDisplay = $('<div id="whoseTurn">' + player + ", it is your turn" + '</div>');
             $('#board').append(turnDisplay);
 
-            $("#whoseTurn").
-            .width(spaceWidth / 3)
-            .height(spaceHeight / 3)
+            $("#whoseTurn")
             .css(
                 {
-                "width": "300px",
-                "border": "15px solid red",
-                "background": "rgba(150, 150, 250, .0)",
-                "font-size": "2em"
+                "font-size": "2em",
+                "position": "absolute",
+                "top": "5%",
+                "width": "100%",
+                "text-align": "center",
+                "color": "white"
             }
-        );
-
-            
+        );           
         }
 
+        function play() {
+            player1 = "X";
+            player2 = "O";
+
+            $(".space").cli
+            if (myTurn){
+
+            }
+        }
 
 
         return function (endFunction) {
