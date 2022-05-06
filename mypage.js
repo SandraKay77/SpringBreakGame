@@ -13,6 +13,7 @@ $(
         ]
         //const BOARD = $('#board');
         var myTurn = true;
+        var gameOver = false;
 
         function positionBoxes() {
 
@@ -32,6 +33,7 @@ $(
         function resize() {
             // adjusts size of board to keep with browser window size
             extraOutline = 2 * (MARGIN + BORDER);
+            var spaces = $(".space");
 
             var windowWidth = Math.floor(parseInt($(window).width() - extraOutline));
             var windowHeight = Math.floor(parseInt($(window).height() - extraOutline));
@@ -41,12 +43,12 @@ $(
             spaceWidth = (windowWidth / 3);
 
             var fontSize = Math.min(spaceWidth, spaceHeight);
-            $(".space")
+            spaces
                 .width(spaceWidth - extraOutline)
                 .height(spaceHeight - extraOutline)
                 .css("fontSize", (0.8 * fontSize) + "px")
                 .css("borderRadius", 5 + "px")
-                
+                .click(play)
 
             $("#board").css(
                 {
@@ -55,10 +57,23 @@ $(
                     "height": Math.floor(windowHeight)
                 }
             );
-           
+            var turnDisplay = $('<div id="whoseTurn">' + '</div>');
+            $('#board').append(turnDisplay);
+            $("#whoseTurn")
+                .css(
+                    {
+                        "font-size": "2em",
+                        "position": "absolute",
+                        "top": "5%",
+                        "width": "100%",
+                        "text-align": "center",
+                        "color": "white"
+                    }
+                );
+
             positionBoxes();
 
-            
+
             //console.log("current width: " + windowWidth);
         }
 
@@ -84,37 +99,32 @@ $(
         }
 
         function whoseTurn() {
-            var player;
+            
             if (myTurn) {
-                player = "Player 1";
+                $("#whoseTurn").html("Player 1, it is your turn")
             }
             else {
-                player = "Player 2"
+                $("#whoseTurn").html("Player 2, it is your turn")
             }
-            var turnDisplay = $('<div id="whoseTurn">' + player + ", it is your turn" + '</div>');
-            $('#board').append(turnDisplay);
 
-            $("#whoseTurn")
-            .css(
-                {
-                "font-size": "2em",
-                "position": "absolute",
-                "top": "5%",
-                "width": "100%",
-                "text-align": "center",
-                "color": "white"
-            }
-        );           
         }
 
         function play() {
             player1 = "X";
             player2 = "O";
-
-            $(".space").cli
-            if (myTurn){
-
+            var currentMark;
+            if (myTurn) {
+                currentMark = player1;
             }
+            else {
+                currentMark = player2;
+            }
+
+            console.log("Player has played " + currentMark);
+
+            myTurn = !myTurn;
+            
+            whoseTurn();
         }
 
 
