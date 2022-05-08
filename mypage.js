@@ -106,12 +106,14 @@ $(
             else {
                 $("#whoseTurn").html("Player 2, it is your turn")
             }
+            
 
         }
 
         function play() {
             player1 = "X";
             player2 = "O";
+            
             var currentMark;
             if (myTurn) {
                 currentMark = player1;
@@ -119,11 +121,10 @@ $(
             else {
                 currentMark = player2;
             }
-
+            
             console.log("Player has played " + currentMark);
 
-            myTurn = !myTurn;
-            
+            myTurn = !myTurn;   
             whoseTurn();
         }
 
