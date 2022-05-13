@@ -58,6 +58,7 @@ $(
             var windowHeight = Math.floor(parseInt($(window).height() - extraOutline));
             spaceHeight = (windowHeight / 3);
             spaceWidth = (windowWidth / 3);
+            
 
             var fontSize = Math.min(spaceWidth, spaceHeight);
             //builds each individual block on the board
@@ -75,7 +76,7 @@ $(
                 {
                     "backgroundColor": "lightBlue",
                     "width": Math.floor(windowWidth),
-                    "height": Math.floor(windowHeight)
+                    "height": Math.floor(windowHeight),
                 }
             );
 
@@ -125,37 +126,46 @@ $(
             if (gameActive){
             //displays current player
             myTurn = !myTurn;
+            
             if (myTurn) {
                 currentPlayer = player1;
-                $("#statusDisplay").html("X, it is your turn")
+                // $("#statusDisplay").html("X, it is your turn")
             }
             else {
                 currentPlayer = player2;
-                $("#statusDisplay").html("O, it is your turn")
-            }}
+                // $("#statusDisplay").html("O, it is your turn")
+            }
+            $("#statusDisplay").html(currentPlayer + " it is your turn");
+        }
             else {
                 gameStart()
             }
 
         }
 
-        function play() {
+        function play(selectedBox) {
             // places the mark on the board
+            
             if (gameActive) {
-                
+                // // var currentMark;
+                // if (myTurn) {
+                //     currentMark = player1;
+                // }
+                // else {
+                //     currentMark = player2;
+                // }
+                // if (currentPlayer == player1){
                 currentBox = event.target;
-                var currentMark;
-                if (myTurn) {
-                    currentMark = player1;
-                }
-                else {
-                    currentMark = player2;
-                }
+                // }
+                // else
+                // {
+                //     currentBox = selectedBox
+                // }
                 x = parseInt(currentBox.id - 1);
                 if (gamePlay[x] === '') {
-                    gamePlay.splice(x, 1, currentMark);
-                    currentBox.innerHTML = currentMark;
-                    console.log("you have played " + currentMark + " in array location number " + x);
+                    gamePlay.splice(x, 1, currentPlayer);
+                    currentBox.innerHTML = currentPlayer;
+                    console.log("you have played " + currentPlayer + " in array location number " + x);
                     console.log(gamePlay);
                     
                 }
